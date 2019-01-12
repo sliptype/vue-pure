@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img @click="update('test')" alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Main from './Main.purs'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'app',
+
   components: {
     HelloWorld
-  }
+  },
+
+  methods: {
+    ...mapMutations([
+      'update'
+    ])
+},
+
 }
 </script>
 
