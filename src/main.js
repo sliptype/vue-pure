@@ -1,28 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { reducers } from 'vuex-reducer'
+import { reducers as createReducers } from 'vuex-reducer'
+
 import App from './App.vue'
+import { initialState as state } from './state/Model.purs';
+import reducers from './state/Reducers.purs'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-  state: {
-    value: {
-      name: 'foo'
-    },
-    history: []
-  },
+const uncurry = f => (a, b) => f(a)(b);
 
-  mutations: reducers({
-    update: (state, name) => ({
-      value: {
-        name
-      },
-      history: [...state.history, state.value]
-    })
-  })
+const mapValues = (obj, f) => Object.keys(obj)
+.reduce((result, current) => ({
+    ...result,
+    [current]: f(obj[current])
+}), {})
+
+const mutations = createReducers(mapValues(reducers, uncurry))
+
+const store = new Vuex.Store({
+  state,
+  mutations,
 })
 
 new Vue({

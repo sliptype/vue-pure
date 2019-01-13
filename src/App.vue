@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img @click="update('test')" alt="Vue logo" src="./assets/logo.png">
+    <img @click="update(5)" alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
