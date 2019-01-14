@@ -11,13 +11,13 @@ type Item =
 
 type List =
   { name :: String
-  , itemIds :: Array Int
+  , itemIds :: Array String
   }
 
 type State =
-  { listIds :: Array Int
+  { listIds :: Array String
   , listsById :: Object List
-  , itemIds :: Array Int
+  , itemIds :: Array String
   , itemsById :: Object Item
   }
 

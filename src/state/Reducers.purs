@@ -4,7 +4,7 @@ import Prelude
 
 import Effect (Effect)
 import Effect.Console (log)
-import Data.Array (length)
+import Data.Array ((:), length)
 import Foreign.Object (insert)
 
 import State.Model (State, emptyList, item)
@@ -16,8 +16,8 @@ addList s name =
   let newId = show $ length s.listIds
       newList = emptyList name
   in
-    s {
-      listsById = insert newId newList s.listsById
+    s
+    { listIds = newId : s.listIds
+    , listsById = insert newId newList s.listsById
     }
-
 

@@ -1,19 +1,29 @@
 <template>
   <div id="app">
-    <img @click="addList('test')" alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="addList('test')">Add List</button>
+    <button @click="addList('test')">Add Item</button>
+    <button @click="addList('test')">Move Item</button>
+    <ul>
+      <List v-for="listId in listIds" :id="listId"></List>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import { mapMutations } from 'vuex'
+import List from './components/List.vue'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'app',
 
   components: {
-    HelloWorld
+    List
+  },
+
+  computed: {
+    ...mapState({
+      listIds: s => s.listIds
+    })
   },
 
   methods: {
