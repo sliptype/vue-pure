@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img @click="update(5)" alt="Vue logo" src="./assets/logo.png">
+    <img @click="addList('test')" alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 
   methods: {
     ...mapMutations([
-      'update'
+      'addList'
     ])
 },
 
