@@ -2,6 +2,7 @@ module State.Model where
 
 import Prelude
 
+import Data.Array ((:))
 import Foreign.Object (Object(..), empty)
 import Effect (Effect)
 import Effect.Console (log)
@@ -34,6 +35,9 @@ emptyList name =
   { name
   , itemIds: []
   }
+
+addItemToList :: String -> List -> List
+addItemToList itemId list = list { itemIds = itemId : list.itemIds }
 
 item :: String -> Item
 item name =
