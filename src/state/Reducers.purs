@@ -2,13 +2,12 @@ module State.Reducers where
 
 import Prelude
 
-import Effect (Effect)
-import Effect.Console (log)
-import Data.Array ((:), length)
-import Data.Maybe (Maybe(..))
-import Foreign.Object (Object(..), lookup, insert)
+import Data.Array ((:))
 
-import State.Model (State, emptyList, item, addItemToList)
+import State.Entity (addInstance, updateInstance, nextId)
+import State.Model (State)
+import State.List (list, addItemToList)
+import State.Item (item)
 
 type Reducer a = State -> a -> State
 
@@ -19,26 +18,18 @@ type ItemAddition =
 
 addList :: Reducer String
 addList s name =
-  let newId = show $ length s.listIds
-      newList = emptyList name
+  let
+    newId = nextId s.list
+    newList = list name
   in
-    s
-    { listIds = newId : s.listIds
-    , listsById = insert newId newList s.listsById
-    }
+  s { list = addInstance newId newList s.list }
 
 addItem :: Reducer ItemAddition
 addItem s { id, name } =
-  let newId = show $ length s.itemIds
-      newItem = item name
-      list = lookup id s.listsById
+  let
+    newId = nextId s.item
   in
-  case list of
-    Nothing -> s
-    Just l ->
-      let newList = addItemToList newId l
-      in
-      s { itemIds = newId : s.itemIds
-        , itemsById = insert newId newItem s.itemsById
-        , listsById = insert id newList s.listsById
-        }
+  s
+   { item = addInstance newId (item name) s.item
+   , list = updateInstance (addItemToList newId) id s.list
+   }

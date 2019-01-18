@@ -13,7 +13,7 @@ export default {
   computed: {
     ...mapState({
       item(s) {
-        return s.itemsById[this.id]
+        return s.item.byId[this.id]
       },
     })
   },

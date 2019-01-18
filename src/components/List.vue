@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapState({
       list(s) {
-        return s.listsById[this.id]
+        return s.list.byId[this.id]
       },
     })
   },

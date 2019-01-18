@@ -22,7 +22,7 @@ export default {
 
   computed: {
     ...mapState({
-      listIds: s => s.listIds
+      listIds: s => s.list.ids
     })
   },
 

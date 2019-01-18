@@ -2,44 +2,17 @@ module State.Model where
 
 import Prelude
 
-import Data.Array ((:))
-import Foreign.Object (Object(..), empty)
-import Effect (Effect)
-import Effect.Console (log)
-
-type Item =
-  { name :: String }
-
-type List =
-  { name :: String
-  , itemIds :: Array String
-  }
+import State.Entity (Entity, entity)
+import State.List (List)
+import State.Item (Item)
 
 type State =
-  { listIds :: Array String
-  , listsById :: Object List
-  , itemIds :: Array String
-  , itemsById :: Object Item
+  { list :: Entity List
+  , item :: Entity Item
   }
 
 initialState :: State
 initialState =
-  { listIds: []
-  , listsById: empty
-  , itemIds: []
-  , itemsById: empty
+  { list: entity
+  , item: entity
   }
-
-emptyList :: String -> List
-emptyList name =
-  { name
-  , itemIds: []
-  }
-
-addItemToList :: String -> List -> List
-addItemToList itemId list = list { itemIds = itemId : list.itemIds }
-
-item :: String -> Item
-item name =
-  { name }
-
