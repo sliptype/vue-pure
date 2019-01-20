@@ -1,6 +1,6 @@
 <template>
-  <li>
-    <h3 v-text="item.name"></h3>
+  <li class="item">
+    <span v-text="item.name"></span>
   </li>
 </template>
 
@@ -24,20 +24,11 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style scoped lang="scss">
+
+.item {
+  text-align: left;
+  padding: 1rem 0
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

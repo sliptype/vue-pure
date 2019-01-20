@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <li>
-      <h3 v-text="list.name"></h3>
-      <ul>
-        <Item v-for="itemId in list.itemIds" :id="itemId"></Item>
-      </ul>
-    </li>
+  <li class="list">
+    <h3 v-text="list.name"></h3>
+    <ul class="item-container">
+      <Item v-for="itemId in list.itemIds" :id="itemId"></Item>
+    </ul>
     <input v-model="newItemName" @keyup.enter="addItem" placeholder="New Item..."/>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -41,6 +39,7 @@ export default {
         id: this.id,
         name: this.newItemName,
       });
+      this.newItemName = "";
     },
   },
 
@@ -50,20 +49,26 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style scoped lang="scss">
+
+.list {
+  border-top: 5px solid aquamarine;
+  box-shadow: 0px 2px 5px 0px #cacaca;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  min-width: 20rem;
 }
-ul {
+
+.item-container {
+  flex-grow: 1;
   list-style-type: none;
+  margin: 0 1rem;
   padding: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+input {
+  border: none;
+  padding: 1rem;
 }
 </style>
