@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { reducers as createReducers } from 'vuex-reducer'
+import { reducers as createMutations } from 'vuex-reducer'
 
 import App from './App.vue'
+import { mapObjectValues, uncurry } from './utils/utils.js'
 import { initialState as state } from './state/Model.purs'
 import reducers from './state/Reducers.purs'
 
@@ -10,17 +11,8 @@ Vue.config.productionTip = false
 
 Vue.use(Vuex)
 
-const uncurry = f => (a, b) => f(a)(b)
-
-const mapValues = (obj, f) =>
-  Object
-    .keys(obj)
-    .reduce((result, current) => ({
-      ...result,
-      [current]: f(obj[current])
-    }), {})
-
-const mutations = createReducers(mapValues(reducers, uncurry))
+const uncurriedReducers = mapObjectValues(reducers, uncurry)
+const mutations = createMutations(uncurriedReducers)
 
 const store = new Vuex.Store({
   state,
