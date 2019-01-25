@@ -1,37 +1,12 @@
 <template>
   <div id="app">
-    <button @click="addList('test')">Add List</button>
-    <button @click="addList('test')">Add Item</button>
-    <button @click="addList('test')">Move Item</button>
-    <ul class="list-container">
-      <List v-for="listId in listIds" :id="listId"></List>
-    </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import List from './components/List.vue'
-import { mapMutations, mapState } from 'vuex'
-
 export default {
   name: 'app',
-
-  components: {
-    List
-  },
-
-  computed: {
-    ...mapState({
-      listIds: s => s.list.ids
-    })
-  },
-
-  methods: {
-    ...mapMutations([
-      'addList'
-    ])
-},
-
 }
 </script>
 
@@ -44,12 +19,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   height: 100vh;
-}
-
-.list-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 10rem auto;
 }
 </style>
