@@ -9,13 +9,14 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import actions from '../state/actions.js'
 
 export default {
   name: 'Actions',
 
   methods: {
     ...mapMutations([
-      'addList'
+      actions.addList
     ])
   },
 }

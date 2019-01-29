@@ -11,6 +11,7 @@
 <script>
 import Item from './Item.vue'
 import { mapMutations, mapState } from 'vuex'
+import actions from '../state/actions.js'
 
 export default {
   name: 'List',
@@ -35,7 +36,7 @@ export default {
 
   methods: {
     addItem() {
-      this.$store.commit('addItem', {
+      this.$store.commit(actions.addItem, {
         id: this.id,
         name: this.newItemName,
       });

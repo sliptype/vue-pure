@@ -9,6 +9,7 @@
 <script>
 import List from './List.vue'
 import { mapMutations, mapState } from 'vuex'
+import actions from '../state/actions.js'
 
 export default {
   name: 'app',
@@ -25,7 +26,7 @@ export default {
 
   methods: {
     ...mapMutations([
-      'addList'
+      actions.addList
     ])
   },
 }

@@ -1,4 +1,7 @@
-module State.Reducers where
+module State.Reducers
+  ( addList
+  , addItem
+  ) where
 
 import Prelude
 
