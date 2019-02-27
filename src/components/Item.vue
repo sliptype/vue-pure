@@ -1,11 +1,14 @@
 <template>
   <li class="item">
-    <span v-text="item.name"></span>
+    <button><</button>
+    <div class="name" v-text="item.name"></div>
+    <button>></button>
   </li>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import actions from '../state/actions.js'
 
 export default {
   name: 'Item',
@@ -18,6 +21,13 @@ export default {
     })
   },
 
+  methods: {
+    ...mapMutations([
+      actions.moveItemRight,
+      actions.moveItemLeft,
+    ])
+  },
+
   props: {
     id: String
   }
@@ -27,8 +37,18 @@ export default {
 <style scoped lang="scss">
 
 .item {
+  display: flex;
   text-align: left;
   padding: 1rem 0
+}
+
+.name {
+  flex: 1;
+  margin: 0 1rem;
+}
+
+button {
+  border: none;
 }
 
 </style>

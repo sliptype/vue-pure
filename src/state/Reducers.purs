@@ -1,38 +1,31 @@
 module State.Reducers
   ( addList
   , addItem
+  , increment
   ) where
 
 import Prelude
 
-import Data.Array ((:))
+import State.Model (State, findListIndex)
+import State.Board (addList, addItem)
+import State.Counter (increment)
 
-import State.Entity (addInstance, updateInstance, nextId)
-import State.Model (State)
-import State.List (list, addItemToList)
-import State.Item (item)
+type Reducer a b = a -> b -> a
 
-type Reducer a = State -> a -> State
-
-type ItemAddition =
-  { id:: String
-  , name :: String
+type Reducable a b =
+  { reducer :: Reducer a b
+  , initialState :: a
   }
 
-addList :: Reducer String
-addList s name =
-  let
-    newId = nextId s.list
-    newList = list name
-  in
-  s { list = addInstance newId newList s.list }
+{
+  s :: Reducable a b
+}
+->
+{
+  s :: a
+}
 
-addItem :: Reducer ItemAddition
-addItem s { id, name } =
-  let
-    newId = nextId s.item
-  in
-  s
-   { item = addInstance newId (item name) s.item
-   , list = updateInstance (addItemToList newId) id s.list
-   }
+getInitialState :: 
+combineReducers :: Object Reducer
+
+

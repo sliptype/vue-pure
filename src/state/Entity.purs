@@ -3,15 +3,28 @@ module State.Entity where
 import Prelude
 
 import Data.Array ((:), length)
+import Data.Foldable (class Foldable, elem)
 import Data.Maybe (Maybe(..))
-import Foreign.Object (Object(..), empty, insert, lookup)
-
+import Foreign.Object (Object(..), empty, insert, lookup, mapWithKey)
 import State.Item (Item(..), item)
 
 type Entity a =
   { ids :: Array String
   , byId :: Object a
   }
+
+type EntityId a = String
+
+instance foldableEntity :: Foldable Entity where
+  foldr f b e = foldr f b (map (\x -> x.ids) e)
+  foldl f b e = foldl f b (map (\x -> x.ids) e)
+
+instance functorEntity :: Functor Entity a where
+  map f e =
+    e { byId = mapWithKey updateValue e.byId }
+    where
+      updateValue :: String -> a -> a
+      updateValue _ value = f value
 
 entity :: forall a. Entity a
 entity =
@@ -35,5 +48,4 @@ updateInstance f id e =
     Nothing -> e
     Just ins ->
       e { byId = insert id (f ins) e.byId }
-
 

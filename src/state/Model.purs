@@ -1,21 +1,24 @@
 module State.Model where
 
 import Prelude
-
-import State.Entity (Entity, addInstance, entity)
-import State.List (List, list)
-import State.Item (Item)
+import State.Board (State, initialState) as Board
+import State.Counter (State, initialState) as Counter
 
 type State =
-  { list :: Entity List
-  , item :: Entity Item
+  { counter :: Counter.State
+  , board :: Board.State
   }
+
+type Reducer a = State -> a -> State
 
 initialState :: State
 initialState =
-  { list: entity
-      # addInstance "0" (list "Todo")
-      # addInstance "1" (list "Doing")
-      # addInstance "2" (list "Done")
-  , item: entity
+  { board: Board.intialState
+  , counter: Counter.initialState
+  }
+
+reducer ::
+  composeReducers
+  { board: Board.reducers
+  , counter: Counter.reducers
   }
