@@ -5,7 +5,7 @@ You can edit this file as you like.
 { name =
     "my-project"
 , dependencies =
-    [ "effect", "console", "foreign-object", "redux"]
+    [ "effect", "console", "maybe", "foreign-object", "redux"]
 , packages =
     ./packages.dhall
 }

@@ -1,11 +1,13 @@
 import Vue from 'vue'
-import store  from './state/Store.purs'
+import s from './state/Model.purs'
 
-export default function createStore() {
-  Vue.Mixin({
+export default function injectStore() {
+  Vue.mixin({
     data() {
+      const store = s.createStore();
+      console.log(store);
       return {
-        store,
+        store
       };
     },
   });
