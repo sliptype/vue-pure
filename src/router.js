@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Actions from './components/Actions.vue'
 import Board from './components/Board.vue'
+import CounterProvider from './components/CounterProvider.vue'
 
 export default function createRouter() {
   Vue.use(VueRouter)
@@ -17,6 +18,10 @@ export default function createRouter() {
         path: '/actions',
         component: Actions,
       },
+      {
+        path: '/counter',
+        component: CounterProvider,
+      }
     ]
   })
 }

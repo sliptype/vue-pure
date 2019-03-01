@@ -20,7 +20,7 @@ initialState = 0
 -- TODO: Clean up this pattern matching
 -- TODO: How to pass different payloads?
 reducer :: Reducer IncrementAction
-reducer s { "type": "increment", value: x }= increment s x
+reducer s { "type": "increment", value: x } = increment s x
 reducer s { "type": "decrement", value: x } = decrement s x
 reducer s { "type": _ } = initialState
 

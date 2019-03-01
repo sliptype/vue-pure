@@ -1,6 +1,4 @@
-module State.Model
- (createStore)
- where
+module State.Model where
 
 import Prelude
 import Data.Maybe (Maybe(..))
@@ -25,8 +23,4 @@ initialState =
       # addInstance "2" (list "Done")
   , item: entity
   }
-
--- TODO: Can't know initial state type here
-createStore :: Effect Redux.Store
-createStore = Redux.createStore Counter.reducer (Counter.reducer 0 { "type": "init", "value": 0 })
 
