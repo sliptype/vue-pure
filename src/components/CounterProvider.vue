@@ -7,10 +7,16 @@
 </template>
 
 <script>
-import { dispatch } from 'redux';
-import Provider from 'vuejs-redux';
+import { dispatch } from 'redux'
+import Provider from 'vuejs-redux'
 
-import Counter from './Counter.vue';
+import Counter from './Counter.vue'
+import Actions from '../state/Counter/CounterAction.purs'
+
+const {
+  increment,
+  decrement,
+} = Actions;
 
 export default {
   props: ['store'],
@@ -22,7 +28,11 @@ export default {
 
     mapDispatchToProps: (dispatch) => ({
       actions: {
-        increment: () => dispatch({ "type": "increment", value: 1 }),
+        increment: () => {
+console.log(increment);
+console.log(increment(1));
+          dispatch({ ...increment(1) });
+        }
       },
     }),
   },

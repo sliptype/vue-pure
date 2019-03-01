@@ -1,14 +1,10 @@
 module State.Model where
 
 import Prelude
-import Data.Maybe (Maybe(..))
-import Effect (Effect)
-import Effect.Redux as Redux
 
 import State.Entity (Entity, addInstance, entity)
 import State.List (List, list)
 import State.Item (Item)
-import State.Counter as Counter
 
 type State =
   { list :: Entity List

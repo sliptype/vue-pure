@@ -9,10 +9,7 @@
 <script>
 export default {
   name: 'Counter',
-  props: ['scope', 'actions', 'value'],
-  mounted() {
-    console.log(this.$props);
-  }
+  props: ['actions', 'value'],
 }
 </script>
 

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { createStore, combineReducers } from 'redux';
-import Counter from './state/Counter.purs'
+import Counter from './state/Counter/CounterReducer.purs'
 import { uncurry } from './utils/utils.js'
 
 export default () => createStore(
