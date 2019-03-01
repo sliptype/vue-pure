@@ -2,12 +2,11 @@ import Vue from 'vue'
 
 import App from './App.vue'
 import createRouter from './router.js'
-import injectStore from './store.js'
+import createStore from './store.js'
 
-// This will inject a the store into every component using a mixin
-injectStore();
+const store = createStore();
 
 new Vue({
   render: h => h(App),
-  router: createRouter(),
+  router: createRouter(store),
 }).$mount('#app')

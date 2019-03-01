@@ -1,5 +1,5 @@
 <template>
-  <Provider :mapDispatchToProps="mapDispatchToProps" :mapStateToProps="mapStateToProps" :store="globalStore">
+  <Provider :mapDispatchToProps="mapDispatchToProps" :mapStateToProps="mapStateToProps" :store="store">
     <template v-slot="{value, actions}">
       <Counter :value="value" :actions="actions"/>
     </template>
@@ -13,22 +13,18 @@ import Provider from 'vuejs-redux';
 import Counter from './Counter.vue';
 
 export default {
-  name: 'CounterProvider',
+  props: ['store'],
 
   methods: {
-    mapStateToProps(state) {
-      return {
+    mapStateToProps: (state) => ({
         value: state.counter
-      }
-    },
+    }),
 
-    mapDispatchToProps(dispatch) {
-      return {
-        actions: {
-          increment: () => dispatch({ "type": "increment", value: 1 }),
-        },
-      };
-    }
+    mapDispatchToProps: (dispatch) => ({
+      actions: {
+        increment: () => dispatch({ "type": "increment", value: 1 }),
+      },
+    }),
   },
 
   components: {
