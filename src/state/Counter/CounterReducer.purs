@@ -2,12 +2,8 @@ module State.Counter.Reducer where
 
 import Prelude
 import State.Reducer
+import State.Counter.Model
 import State.Counter.Action
-
-type State = Int
-
-initialState :: State
-initialState = 0
 
 reducer :: Reducer State Action
 reducer (Initial) _ = initialState

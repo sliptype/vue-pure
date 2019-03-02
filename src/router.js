@@ -3,7 +3,11 @@ import VueRouter from 'vue-router'
 
 import Actions from './components/Actions.vue'
 import Board from './components/Board.vue'
-import CounterProvider from './components/Counter/CounterProvider.vue'
+
+import Connected from './components/Connected/Connected.vue'
+
+import Counter from './components/Counter/Counter.vue'
+import CounterConnect from './components/Counter/CounterConnect.purs'
 
 const routes = [
   {
@@ -16,7 +20,12 @@ const routes = [
   },
   {
     path: '/counter',
-    component: CounterProvider,
+    component: Connected,
+    props: {
+      component: Counter,
+      mapDispatchToProps: CounterConnect.mapDispatchToProps,
+      mapStateToProps: CounterConnect.mapStateToProps,
+    },
   }
 ];
 
@@ -31,5 +40,8 @@ export default function createRouter(store) {
 const augmentRoutesWithStore = (routes) => (store) =>
   routes.map(x => ({
     ...x,
-    props: { store },
+    props: {
+      ...x.props,
+      store,
+    },
   }))

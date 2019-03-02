@@ -2,9 +2,12 @@ module Counter.Connect where
 
 import Prelude (Unit, identity, ($))
 import State.Counter.Action (Action(..))
-import State.Counter.Reducer (State)
+import State.Counter.Model (State)
 
-type Props = { value :: State }
+type Props =
+  { props ::
+    { value :: State }
+  }
 
 type Actions =
   { actions ::
@@ -14,7 +17,10 @@ type Actions =
   }
 
 mapStateToProps :: State -> Props
-mapStateToProps x = { value: x }
+mapStateToProps x =
+  { props:
+    { value: x }
+  }
 
 mapDispatchToProps :: (Action -> Unit) -> Actions
 mapDispatchToProps dispatch =
