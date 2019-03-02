@@ -7,7 +7,7 @@ import Board from './components/Board.vue'
 import Connected from './components/Connected/Connected.vue'
 
 import Counter from './components/Counter/Counter.vue'
-import CounterConnect from './components/Counter/CounterConnect.purs'
+import CounterConnect from './components/Counter/Counter.purs'
 
 const routes = [
   {

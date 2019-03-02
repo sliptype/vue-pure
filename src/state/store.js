@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 
-import { reducer as rootReducer } from './state/Counter/CounterReducer.purs'
-import { Initial } from './state/Counter/CounterAction.purs'
+import { reducer as rootReducer } from './Counter/Reducer.purs'
+import { Initial } from './Counter/Action.purs'
 
 /**
  * Pass data into the purescript reducer

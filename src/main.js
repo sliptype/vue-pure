@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import App from './App.vue'
 import createRouter from './router.js'
-import createStore from './store.js'
+import createStore from './state/store.js'
 
 const store = createStore();
 
