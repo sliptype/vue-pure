@@ -116,6 +116,13 @@ let upstream =
 
 let overrides = {=}
 
-let additions = {=}
+let additions =
+  { redux =
+      mkPackage
+        [ "prelude"
+        ]
+        "https://github.com/sliptype/purescript-redux.git"
+        "master"
+  }
 
 in  upstream ⫽ overrides ⫽ additions

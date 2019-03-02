@@ -5,18 +5,11 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Item',
 
-  computed: {
-    ...mapState({
-      item(s) {
-        return s.item.byId[this.id]
-      },
-    })
-  },
+  computed: {},
 
   props: {
     id: String

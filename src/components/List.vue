@@ -10,8 +10,6 @@
 
 <script>
 import Item from './Item.vue'
-import { mapMutations, mapState } from 'vuex'
-import actions from '../state/actions.js'
 
 export default {
   name: 'List',
@@ -20,13 +18,7 @@ export default {
     Item,
   },
 
-  computed: {
-    ...mapState({
-      list(s) {
-        return s.list.byId[this.id]
-      },
-    })
-  },
+  computed: {},
 
   data() {
     return {
@@ -34,15 +26,7 @@ export default {
     }
   },
 
-  methods: {
-    addItem() {
-      this.$store.commit(actions.addItem, {
-        id: this.id,
-        name: this.newItemName,
-      });
-      this.newItemName = "";
-    },
-  },
+  methods: {},
 
   props: {
     id: String
