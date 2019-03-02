@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Actions from './components/Actions.vue'
 import Board from './components/Board.vue'
-import CounterProvider from './components/CounterProvider.vue'
+import CounterProvider from './components/Counter/CounterProvider.vue'
 
 const routes = [
   {

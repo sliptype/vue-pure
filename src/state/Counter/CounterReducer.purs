@@ -9,10 +9,10 @@ type State = Int
 initialState :: State
 initialState = 0
 
-reducer :: forall a. Reducer State Action
-reducer s (Increment x) = increment s x
-reducer s (Decrement x) = decrement s x
-reducer s _ = initialState
+reducer :: Reducer State Action
+reducer (Initial) _ = initialState
+reducer (Increment x) s = increment s x
+reducer (Decrement x) s = decrement s x
 
 increment :: Reducer State Int
 increment state x = state + x
