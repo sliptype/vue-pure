@@ -14,8 +14,8 @@ Connecting this to Redux is done in `state/store.js`:
  * `standardizeAction` intercepts incoming actions to assign them a name (following "flux-standard-action")
 
 # Dispatching
-Each smart component has a corresponding `.purs` file that will handle mapping the state and dispatch to props. An example is `components/Counter/Counter.purs`, where the state and actions to dispatch are exposed.
-Action creators are be placed in their corresponding `Action.purs` file and they can be invoked inside `mapDispatchToProps`.
+Each smart component has a corresponding `.purs` file that will handle mapping the state and dispatch to props. An example is `components/Counter/Counter.purs`, where the state and actions are exposed.
+Action creators are placed in their corresponding `Action.purs` file and can be invoked inside `mapDispatchToProps`.
 
 ## Project setup
 ```
