@@ -12,8 +12,6 @@ import Provider from 'vuejs-redux'
 import Counter from './Counter.vue'
 import { mapStateToProps, mapDispatchToProps } from './CounterConnect.purs'
 
-console.log('dispatch', mapDispatchToProps);
-
 export default {
   props: ['store'],
 
