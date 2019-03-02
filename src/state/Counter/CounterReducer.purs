@@ -2,7 +2,7 @@ module State.Counter.Reducer where
 
 import Prelude
 import State.Reducer
-import State.Counter.Model
+import State.Counter.State
 import State.Counter.Action
 
 reducer :: Reducer State Action
