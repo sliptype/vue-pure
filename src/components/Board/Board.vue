@@ -1,7 +1,11 @@
 <template>
   <div>
     <ul class="board">
-      <Connected :component="list" v-for="id in props.listIds" :ownProps="{ id }" :store="props.store"></Connected>
+      <Connected
+        v-for="id in props.listIds"
+        :component="list"
+        :componentProps="{ id }"
+      />
     </ul>
   </div>
 </template>
@@ -9,6 +13,7 @@
 <script>
 import Connected from '../Connected/Connected.vue'
 import List from '../List/List.vue'
+import ListConnect from '../List/List.purs'
 
 export default {
   name: 'Board',

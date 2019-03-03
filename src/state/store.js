@@ -28,6 +28,18 @@ const standardizeAction = _ => next => action => (
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export default () => createStore(reducer, composeEnhancers(applyMiddleware(
+const store = createStore(reducer, composeEnhancers(applyMiddleware(
   standardizeAction,
 )))
+
+/**
+ * Export a Vue mixin that expose the store
+ * @returns { Mixin }
+ */
+export default {
+  data() {
+    return {
+      store,
+    };
+  },
+}
