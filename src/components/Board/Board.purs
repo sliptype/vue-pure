@@ -15,14 +15,14 @@ type Actions =
     { addList :: String -> Unit }
   }
 
-mapStateToProps :: State -> Props
-mapStateToProps x =
+mapStateToProps :: forall a. State -> a -> Props
+mapStateToProps x _ =
   { props:
     { listIds: x.list.ids }
   }
 
-mapDispatchToProps :: (Action -> Unit) -> Actions
-mapDispatchToProps dispatch =
+mapDispatchToProps :: forall a. (Action -> Unit) -> a -> Actions
+mapDispatchToProps dispatch _ =
   { actions:
     { addList: \x -> dispatch $ AddList x }
   }

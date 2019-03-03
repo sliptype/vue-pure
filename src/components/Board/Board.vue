@@ -13,14 +13,13 @@
 <script>
 import Connected from '../Connected/Connected.vue'
 import List from '../List/List.vue'
-import ListConnect from '../List/List.purs'
 
 export default {
   name: 'Board',
 
   props: ['actions', 'props'],
 
-  data: function () {
+  data() {
     return {
       list: List,
     }

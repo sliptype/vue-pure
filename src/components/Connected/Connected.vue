@@ -22,7 +22,7 @@ import Provider from 'vuejs-redux'
 import Store from '../../state/store.js'
 
 /**
- * This component dynamically connects a given component to a store
+ * This component dynamically connects a given component to the store
  * using a naming convention by default and optionally a path.
  * By default 'Counter/Counter.vue' will be connected with 'Counter/Counter.purs'
  */
@@ -42,18 +42,26 @@ export default {
   async mounted() {
 
     // Dynamically import the connector, which should contain mapDispatchToProps & mapStateToProps
-    const path = this.connectorPath || `../${ this.component.name }/${ this.component.name }.purs`
-    this.connector = await import(path)
+    this.connector = await import(`../${ this.component.name }/${ this.component.name }.purs`)
 
     if (!this.connector) {
       throw new Error('Could not find specified store connector, did you declare a corresponding .purs file?')
     }
   },
 
-  props: [
-    'component',
-    'componentProps',
-    'connectorPath',
-  ],
+  props: {
+    component: {
+      type: Object,
+      required: true,
+    },
+    componentProps: {
+      type: Object,
+      required: false,
+    },
+    connectorPath: {
+      type: String,
+      required: false,
+    },
+  },
 }
 </script>

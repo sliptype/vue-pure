@@ -7064,7 +7064,7 @@ vue@^2.6.0:
 
 "vuejs-redux@https://github.com/sliptype/vuejs-redux.git#master":
   version "2.3.1"
-  resolved "https://github.com/sliptype/vuejs-redux.git#1dae504485c1e1207dc61d566e5dcc708442a2f7"
+  resolved "https://github.com/sliptype/vuejs-redux.git#e7af48fd96bf0673cf7ec3a4654a34214e05a68f"
 
 watchpack@^1.5.0:
   version "1.6.0"

@@ -2,17 +2,28 @@
   <li class="list">
     <h3 v-text="props.name"></h3>
     <ul class="item-container">
-      <Item v-for="id in props.itemIds" :id="id"></Item>
+      <Connected
+        v-for="id in props.itemIds"
+        :component="item"
+        :componentProps="{ id }"/>
     </ul>
-    <input v-model="newItemName" @keyup.enter="addItem" placeholder="New Item..."/>
+    <input v-model="newItemName" @keyup.enter="actions.addItem(newItemName)" placeholder="New Item..."/>
   </li>
 </template>
 
 <script>
+import Connected from '../Connected/Connected.vue'
 import Item from '../Item/Item.vue'
 
 export default {
   name: 'List',
+
+  data() {
+    return {
+      item: Item,
+      newItemName: "",
+    }
+  },
 
   props: {
     props: Object,
@@ -20,14 +31,10 @@ export default {
   },
 
   components: {
+    Connected,
     Item,
   },
 
-  data() {
-    return {
-      newItemName: "",
-    }
-  },
 }
 </script>
 

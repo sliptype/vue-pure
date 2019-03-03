@@ -1,6 +1,6 @@
 <template>
   <li class="item">
-    <span v-text="item.name"></span>
+    <span v-text="props.name"></span>
   </li>
 </template>
 
@@ -12,8 +12,9 @@ export default {
   computed: {},
 
   props: {
-    id: String
-  }
+    props: Object,
+    actions: Object,
+  },
 }
 </script>
 
