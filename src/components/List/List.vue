@@ -1,36 +1,33 @@
 <template>
   <li class="list">
-    <h3 v-text="list.name"></h3>
+    <h3 v-text="props.name"></h3>
     <ul class="item-container">
-      <Item v-for="itemId in list.itemIds" :id="itemId"></Item>
+      <Item v-for="id in props.itemIds" :id="id"></Item>
     </ul>
     <input v-model="newItemName" @keyup.enter="addItem" placeholder="New Item..."/>
   </li>
 </template>
 
 <script>
-import Item from './Item.vue'
+import Item from '../Item/Item.vue'
 
 export default {
   name: 'List',
 
+  props: {
+    props: Object,
+    actions: Object,
+  },
+
   components: {
     Item,
   },
-
-  computed: {},
 
   data() {
     return {
       newItemName: "",
     }
   },
-
-  methods: {},
-
-  props: {
-    id: String
-  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-module State.Counter.State where
+module State.Counter where
 
 type State = Int
 

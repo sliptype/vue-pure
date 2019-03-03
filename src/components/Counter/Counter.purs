@@ -1,8 +1,8 @@
 module Counter.Connect where
 
-import Prelude (Unit, identity, ($))
+import Prelude (Unit, ($))
+import State.Counter (State)
 import State.Counter.Action (Action(..))
-import State.Counter.State (State)
 
 type Props =
   { props ::
