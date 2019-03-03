@@ -1,7 +1,16 @@
 <template>
-  <Provider :mapDispatchToProps="mapDispatchToProps" :mapStateToProps="mapStateToProps" :store="store">
+  <Provider
+    :mapDispatchToProps="mapDispatchToProps"
+    :mapStateToProps="mapStateToProps"
+    :ownProps="componentProps"
+    :store="store"
+  >
     <template v-slot="{ props, actions }">
-      <component :is="component" :props="{ ...props, ...componentProps }" :actions="actions"/>
+      <component
+        :actions="actions"
+        :is="component"
+        :props="{ ...props, ...componentProps }"
+      />
     </template>
   </Provider>
 </template>
