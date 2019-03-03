@@ -1,8 +1,10 @@
-module State.List where
+module State.Board.List where
 
 import Prelude
 
 import Data.Array ((:))
+
+import State.Entity (EntityId)
 
 type List =
   { name :: String
@@ -15,6 +17,6 @@ list name =
   , itemIds: []
   }
 
-addItemToList :: String -> List -> List
-addItemToList id l = l { itemIds = id : l.itemIds }
+addItem :: EntityId -> List -> List
+addItem id l = l { itemIds = id : l.itemIds }
 

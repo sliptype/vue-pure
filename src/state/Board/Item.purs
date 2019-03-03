@@ -1,4 +1,4 @@
-module State.Item where
+module State.Board.Item where
 
 import Prelude
 

@@ -1,36 +1,40 @@
 <template>
   <li class="list">
-    <h3 v-text="list.name"></h3>
+    <h3 v-text="props.name"></h3>
     <ul class="item-container">
-      <Item v-for="itemId in list.itemIds" :id="itemId"></Item>
+      <Connected
+        v-for="id in props.itemIds"
+        :component="item"
+        :componentProps="{ id }"/>
     </ul>
-    <input v-model="newItemName" @keyup.enter="addItem" placeholder="New Item..."/>
+    <input v-model="newItemName" @keyup.enter="actions.addItem(newItemName)" placeholder="New Item..."/>
   </li>
 </template>
 
 <script>
-import Item from './Item.vue'
+import Connected from '../Connected/Connected.vue'
+import Item from '../Item/Item.vue'
 
 export default {
   name: 'List',
 
-  components: {
-    Item,
-  },
-
-  computed: {},
-
   data() {
     return {
+      item: Item,
       newItemName: "",
     }
   },
 
-  methods: {},
-
   props: {
-    id: String
-  }
+    props: Object,
+    actions: Object,
+  },
+
+  components: {
+    Connected,
+    Item,
+  },
+
 }
 </script>
 

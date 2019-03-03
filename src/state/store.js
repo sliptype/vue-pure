@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 
-import { reducer as rootReducer } from './Counter/Reducer.purs'
-import { Initial } from './Counter/Action.purs'
+import { reducer as rootReducer } from './Board/Reducer.purs'
+import { Initial } from './Board/Action.purs'
 
 /**
  * Pass data into the purescript reducer
@@ -28,6 +28,18 @@ const standardizeAction = _ => next => action => (
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export default () => createStore(reducer, composeEnhancers(applyMiddleware(
+const store = createStore(reducer, composeEnhancers(applyMiddleware(
   standardizeAction,
 )))
+
+/**
+ * Export a Vue mixin that expose the store
+ * @returns { Mixin }
+ */
+export default {
+  data() {
+    return {
+      store,
+    };
+  },
+}

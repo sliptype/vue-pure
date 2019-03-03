@@ -1,10 +1,10 @@
-module State.Model where
+module State.Board where
 
 import Prelude
 
-import State.Entity (Entity, addInstance, entity)
-import State.List (List, list)
-import State.Item (Item)
+import State.Entity (Entity(..), addInstance, entity)
+import State.Board.List (List, list)
+import State.Board.Item (Item)
 
 type State =
   { list :: Entity List
