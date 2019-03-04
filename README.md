@@ -17,6 +17,9 @@ Connecting this to Redux is done in `state/store.js`:
 Each smart component has a corresponding `.purs` file that will handle mapping the state and dispatch to props. An example is `components/Counter/Counter.purs`, where the state and actions are exposed.
 Action creators are placed in their corresponding `Action.purs` file and can be invoked inside `mapDispatchToProps`.
 
+## Why not Vuex?
+Unfortunately, Vuex is not a good candidate for purescript interop because it depends on mutability. Purescript has no concept of mutability and this would require mapping immutable state updates to the Vuex state. Although not impossible, it does present a performance concern as well as hindering reducer composition.
+
 # Developing
 
 ## Project setup
