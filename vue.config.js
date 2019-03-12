@@ -11,7 +11,6 @@ module.exports = {
       .use('purs-loader')
       .loader('purs-loader')
       .tap(options => ({
-        // psc: 'psa',
         src: [
           path.join('src', '**', '*.purs'),
           path.join('.spago', '**', 'src', '**', '*.purs'),
