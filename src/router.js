@@ -11,6 +11,13 @@ const routes = [
     path: '/',
     component: Connected,
     props: {
+      component: Counter,
+    },
+  },
+  {
+    path: '/board',
+    component: Connected,
+    props: {
       component: Board,
     },
   },
@@ -18,13 +25,6 @@ const routes = [
     path: '/actions',
     component: Actions,
   },
-  {
-    path: '/counter',
-    component: Connected,
-    props: {
-      component: Counter,
-    },
-  }
 ];
 
 export default function createRouter(store) {
