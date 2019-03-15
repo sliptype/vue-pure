@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 
-import { reducer as rootReducer } from './Board/Reducer.purs'
-import { Initial } from './Board/Action.purs'
+import { reducer as rootReducer } from './Counter/Reducer.purs'
+import { initialAction } from './App/Reducer.purs'
 
 /**
  * Pass data into the purescript reducer
@@ -10,7 +10,7 @@ import { Initial } from './Board/Action.purs'
  */
 const reducer = (state, action) => (
   state === undefined
-    ? rootReducer (Initial.value) ({})
+    ? rootReducer (initialAction) ({})
     : rootReducer (action.data) (state)
 )
 
@@ -33,7 +33,7 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(
 )))
 
 /**
- * Export a Vue mixin that expose the store
+ * Export a Vue mixin that exposes the store
  * @returns { Mixin }
  */
 export default {

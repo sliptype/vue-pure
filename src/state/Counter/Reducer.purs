@@ -1,11 +1,15 @@
 module State.Counter.Reducer where
 
 import Prelude
+import Data.Maybe (Maybe)
 
+import State.Reducer (withInitialState)
 import State.Counter (State, initialState)
 import State.Counter.Action (Action(..))
 
-reducer :: Action -> State -> State
-reducer (Initial) _ = initialState
-reducer (Increment x) state = state + x 
-reducer (Decrement x) state = state - x
+counterReducer :: Action -> State -> State
+counterReducer (Increment x) state = state + x
+counterReducer (Decrement x) state = state - x
+
+reducer :: (Maybe Action) -> State -> State
+reducer = withInitialState counterReducer initialState
