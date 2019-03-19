@@ -21,10 +21,10 @@ type Actions =
 dispatchAction :: ((Maybe Action) -> Unit) -> Action -> Unit
 dispatchAction dispatch action = dispatch $ (Just action)
 
-mapStateToProps :: forall a. State -> a -> Props
-mapStateToProps x _ =
+mapStateToProps :: forall a b. { counter :: State | a } -> b -> Props
+mapStateToProps { counter } _ =
   { props:
-    { value: x }
+    { value: counter }
   }
 
 mapDispatchToProps :: forall a. ((Maybe Action) -> Unit) -> a -> Actions

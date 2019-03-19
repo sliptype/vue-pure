@@ -15,10 +15,10 @@ type Actions =
     { addList :: String -> Unit }
   }
 
-mapStateToProps :: forall a. State -> a -> Props
-mapStateToProps x _ =
+mapStateToProps :: forall a b. { board :: State | a } -> b -> Props
+mapStateToProps { board } _ =
   { props:
-    { listIds: x.list.ids }
+    { listIds: board.list.ids }
   }
 
 mapDispatchToProps :: forall a. (Action -> Unit) -> a -> Actions

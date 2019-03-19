@@ -10,6 +10,7 @@ import State.Counter.Action (Action(..))
 counterReducer :: Action -> State -> State
 counterReducer (Increment x) state = state + x
 counterReducer (Decrement x) state = state - x
+counterReducer _ state = state
 
 reducer :: (Maybe Action) -> State -> State
 reducer = withInitialState counterReducer initialState

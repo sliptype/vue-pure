@@ -1,17 +1,23 @@
 module State.Board.Reducer where
 
 import Prelude
-import State.Reducer (Reducer)
+import Data.Maybe (Maybe)
+
+import State.Reducer (Reducer, withInitialState)
 import State.Entity (EntityId, addInstance, nextId, updateInstance)
 import State.Board (State, initialState)
 import State.Board.Action (Action(..))
 import State.Board.List (list, addItem)
 import State.Board.Item (item)
 
-reducer :: Reducer State Action
-reducer (Initial) _ = initialState
-reducer (AddList name) s = addList name s
-reducer (AddItemToList id name) s = addItemToList id name s
+boardReducer :: Reducer State Action
+boardReducer (AddList name) s = addList name s
+boardReducer (AddItemToList id name) s = addItemToList id name s
+boardReducer _ s = s
+-- TODO: Determine how to avoid having to specify default
+
+reducer :: (Maybe Action) -> State -> State
+reducer = withInitialState boardReducer initialState
 
 addList :: String -> State -> State
 addList name s =

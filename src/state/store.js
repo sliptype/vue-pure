@@ -1,6 +1,8 @@
-import { createStore, compose, applyMiddleware } from 'redux'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { mapObjectValues } from '../utils/utils.js'
 
-import { reducer as rootReducer } from './Counter/Reducer.purs'
+import { reducer as counter } from './Counter/Reducer.purs'
+import { reducer as board } from './Board/Reducer.purs'
 import { initialAction } from './App/Reducer.purs'
 
 /**
@@ -8,10 +10,10 @@ import { initialAction } from './App/Reducer.purs'
  * @param { Object } state
  * @param { Object } action
  */
-const reducer = (state, action) => (
+const uncurryReducer = (curriedReducer) => (state, action) => (
   state === undefined
-    ? rootReducer (initialAction) ({})
-    : rootReducer (action.data) (state)
+    ? curriedReducer (initialAction) ({})
+    : curriedReducer (action.data) (state)
 )
 
 /**
@@ -19,21 +21,30 @@ const reducer = (state, action) => (
  * @param { Function } next
  * @param { Object } action
  */
-const standardizeAction = _ => next => action => (
+const standardizeAction = () => next => action => (
   next({
     type: action.constructor.name,
     data: action
   })
 )
 
+/**
+ * Combine reducers into root reducer
+ * TODO: Do this in purescript
+ */
+const rootReducer = combineReducers(mapObjectValues({
+  counter,
+  board,
+}, uncurryReducer));
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(
   standardizeAction,
 )))
 
 /**
- * Export a Vue mixin that exposes the store
+ * A Vue mixin that exposes the store
  * @returns { Mixin }
  */
 export default {
