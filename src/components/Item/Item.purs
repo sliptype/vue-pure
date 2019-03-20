@@ -31,7 +31,7 @@ mapStateToProps { board } { id } =
     Nothing -> { props: item "" }
     Just i -> { props: i }
 
-mapDispatchToProps :: (Action -> Unit) -> OwnProps -> Actions
+mapDispatchToProps :: ((Maybe Action) -> Unit) -> OwnProps -> Actions
 mapDispatchToProps dispatch { id } =
   { actions: {}
   }

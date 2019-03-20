@@ -34,8 +34,8 @@ mapStateToProps { board } { id } =
     Nothing -> { props: list "" }
     Just l -> { props: l }
 
-mapDispatchToProps :: (Action -> Unit) -> OwnProps -> Actions
+mapDispatchToProps :: ((Maybe Action) -> Unit) -> OwnProps -> Actions
 mapDispatchToProps dispatch { id } =
   { actions:
-    { addItem: \x -> dispatch $ AddItemToList id x }
+    { addItem: \x -> dispatch $ Just $ AddItemToList id x }
   }

@@ -17,20 +17,17 @@ type Actions =
     }
   }
 
--- TODO: Should this be an effect?
-dispatchAction :: ((Maybe Action) -> Unit) -> Action -> Unit
-dispatchAction dispatch action = dispatch $ (Just action)
-
 mapStateToProps :: forall a b. { counter :: State | a } -> b -> Props
 mapStateToProps { counter } _ =
   { props:
     { value: counter }
   }
 
+-- TODO: bindActionCreators
 mapDispatchToProps :: forall a. ((Maybe Action) -> Unit) -> a -> Actions
 mapDispatchToProps dispatch _ =
   { actions:
-    { increment: \x -> dispatchAction dispatch (Increment x)
-    , decrement: \x -> dispatchAction dispatch (Decrement x)
+    { increment: \x -> dispatch $ Just $ Increment x
+    , decrement: \x -> dispatch $ Just $ Decrement x
     }
   }
