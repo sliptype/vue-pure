@@ -25,10 +25,10 @@ type Actions =
     { addItem :: String -> Unit }
   }
 
-mapStateToProps :: State -> OwnProps -> Props
-mapStateToProps x { id } =
+mapStateToProps :: forall a. { board :: State | a } -> OwnProps -> Props
+mapStateToProps { board } { id } =
   let
-    maybeList = lookup id x.list.byId
+    maybeList = lookup id board.list.byId
   in
   case maybeList of
     Nothing -> { props: list "" }

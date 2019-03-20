@@ -22,10 +22,10 @@ type Actions =
   { actions :: {}
   }
 
-mapStateToProps :: State -> OwnProps -> Props
-mapStateToProps x { id } =
+mapStateToProps :: forall a. { board:: State | a }-> OwnProps -> Props
+mapStateToProps { board } { id } =
   let
-    maybeItem = lookup id x.item.byId
+    maybeItem = lookup id board.item.byId
   in
   case maybeItem of
     Nothing -> { props: item "" }
