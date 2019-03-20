@@ -39,14 +39,20 @@ export default {
 
   mixins: [Store],
 
-  async mounted() {
+  methods: {
+    async getConnector() {
 
-    // Dynamically import the connector, which should contain mapDispatchToProps & mapStateToProps
-    this.connector = await import(`../${ this.component.name }/${ this.component.name }.purs`)
+      // Dynamically import the connector, which should contain mapDispatchToProps & mapStateToProps
+      this.connector = await import(`../${ this.component.name }/${ this.component.name }.purs`)
 
-    if (!this.connector) {
-      throw new Error('Could not find specified store connector, did you declare a corresponding .purs file?')
-    }
+      if (!this.connector) {
+        throw new Error('Could not find specified store connector, did you declare a corresponding .purs file?')
+      }
+    },
+  },
+
+  mounted() {
+    this.getConnector();
   },
 
   props: {
