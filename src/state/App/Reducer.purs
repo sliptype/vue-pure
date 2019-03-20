@@ -20,5 +20,8 @@ withInitialState :: forall a b. (Reducer a b) -> a -> (Maybe b) -> a -> a
 withInitialState _ initialState Nothing _ = initialState
 withInitialState reducer _ (Just action) state = reducer action state
 
+-- Re-exporting 'Nothing' as the initial action
+-- this allows all sliced reducers to handle their
+-- initial state when a root reducer is initialized
 initialAction :: forall a. Maybe a
 initialAction = Nothing
