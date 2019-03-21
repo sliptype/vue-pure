@@ -11,6 +11,7 @@ You can edit this file as you like.
     , "foreign-object"
     , "redux"
     , "record-extra"
+    , "typelevel-prelude"
     ]
 , packages =
     ./packages.dhall
