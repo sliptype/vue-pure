@@ -1,6 +1,7 @@
 module Counter.Connect where
 
-import Prelude (Unit, ($))
+import Prelude (Unit, (<<<))
+import Record.Extra (mapRecord)
 import Data.Maybe (Maybe(..))
 import State.Counter (State)
 import State.Counter.Action (Action(..))
@@ -23,11 +24,19 @@ mapStateToProps { counter } _ =
     { value: counter }
   }
 
--- TODO: bindActionCreators
-mapDispatchToProps :: forall a. ((Maybe Action) -> Unit) -> a -> Actions
+type Dispatch = ((Maybe Action) -> Unit)
+
+-- TODO: Bind higher arity action creators
+bindActionCreator :: forall a. Dispatch -> (a -> Action) -> (a -> Unit)
+bindActionCreator dispatch actionCreator = dispatch <<< Just <<< actionCreator
+
+-- bindActionCreators :: forall a b. Dispatch -> { | a } -> { | b }
+-- bindActionCreators dispatch actionCreators = mapRecord (bindActionCreator dispatch) actionCreators
+
+mapDispatchToProps :: forall a. Dispatch -> a -> Actions
 mapDispatchToProps dispatch _ =
-  { actions:
-    { increment: \x -> dispatch $ Just $ Increment x
-    , decrement: \x -> dispatch $ Just $ Decrement x
+  { actions: mapRecord (bindActionCreator dispatch)
+    { increment: \x -> Increment x
+    , decrement: \x -> Decrement x
     }
   }
