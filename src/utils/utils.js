@@ -1,3 +1,8 @@
+/**
+ * Applies a function to all values in an object
+ * @param { Object } obj The source object
+ * @param { Function } f The transformation function
+ */
 export const mapObjectValues = (obj, f) =>
   Object
   .keys(obj)
@@ -6,4 +11,3 @@ export const mapObjectValues = (obj, f) =>
     [current]: f(obj[current], current)
   }), {})
 
-export const uncurry = f => (a, b) => f(a)(b)
