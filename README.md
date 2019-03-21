@@ -10,7 +10,7 @@ This is an example of using Purescript to handle business logic in a Vue applica
 ## Setup
 The actions, state, and reducers are written in Purescript. They can be found in the `state` directory.
 Connecting this to Redux is done in `state/store.js`:
- * `reducer` catches the initialization case, where `state` is undefined, by calling the `rootReducer` with an `Initial` value.
+ * Each reducer is applied to `uncurryReducer`, which catches the initialization case (where `state` is undefined), by calling the `rootReducer` with an `initialAction`.
  * `standardizeAction` intercepts incoming actions to assign them a name (following "flux-standard-action")
 
 ## Dispatching
