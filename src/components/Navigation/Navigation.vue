@@ -7,9 +7,6 @@
       <router-link tag="li" to="/board">
         <a>Board</a>
       </router-link>
-      <router-link tag="li" to="/actions">
-        <a>Actions</a>
-      </router-link>
     </ul>
   </nav>
 </template>

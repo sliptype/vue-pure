@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Actions from './components/Actions.vue'
 import Board from './components/Board/Board.vue'
 import Connected from './components/Connected/Connected.vue'
 import Counter from './components/Counter/Counter.vue'
@@ -20,10 +19,6 @@ const routes = [
     props: {
       component: Board,
     },
-  },
-  {
-    path: '/actions',
-    component: Actions,
   },
 ];
 
