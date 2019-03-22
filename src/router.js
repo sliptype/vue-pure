@@ -22,7 +22,7 @@ const routes = [
   },
 ];
 
-export default function createRouter(store) {
+export default function createRouter() {
   Vue.use(VueRouter)
 
   return new VueRouter({
