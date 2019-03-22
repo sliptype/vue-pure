@@ -2,7 +2,7 @@
   <div>
     <h1>Counter: {{ props.value }}</h1>
     <button @click="actions.increment(1)">Increment</button>
-    <button @click="actions.decrement(2)">Decrement</button>
+    <button @click="actions.decrement(1)">Decrement</button>
   </div>
 </template>
 
