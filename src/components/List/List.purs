@@ -1,41 +1,35 @@
 module List.Connect where
 
 import Prelude (Unit, ($))
-import Data.Array
 import Data.Maybe (Maybe(..))
 import Foreign.Object (lookup)
 
+import State.Action (Actions, Dispatch, Props, actions, props)
 import State.Entity (EntityId)
 import State.Board (State)
 import State.Board.Action (Action(..))
 import State.Board.List (list)
 
-type Props =
-  { props ::
-    { name :: String
-    , itemIds :: Array EntityId
-    }
+type ListProps = Props
+  { name :: String
+  , itemIds :: Array EntityId
   }
 
 type OwnProps =
   { id :: EntityId }
 
-type Actions =
-  { actions ::
-    { addItem :: String -> Unit }
-  }
+type ListActions = Actions
+  { addItem :: String -> Unit }
 
-mapStateToProps :: forall a. { board :: State | a } -> OwnProps -> Props
+mapStateToProps :: forall a. { board :: State | a } -> OwnProps -> ListProps
 mapStateToProps { board } { id } =
   let
     maybeList = lookup id board.list.byId
   in
   case maybeList of
-    Nothing -> { props: list "" }
-    Just l -> { props: l }
+    Nothing -> props $ list ""
+    Just l -> props $ l
 
-mapDispatchToProps :: ((Maybe Action) -> Unit) -> OwnProps -> Actions
-mapDispatchToProps dispatch { id } =
-  { actions:
-    { addItem: \x -> dispatch $ Just $ AddItemToList id x }
-  }
+mapDispatchToProps :: Dispatch -> OwnProps -> ListActions
+mapDispatchToProps dispatch { id } = actions
+  { addItem: \x -> dispatch $ Just $ AddItemToList id x }
