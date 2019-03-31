@@ -23,7 +23,7 @@ const uncurryReducer = (curriedReducer) => (state, action) => (
  */
 const standardizeAction = () => next => action => (
   next({
-    type: action.constructor.name,
+    type: action.value0.constructor.name,
     data: action
   })
 )
