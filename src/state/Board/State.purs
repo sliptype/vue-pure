@@ -14,9 +14,9 @@ type State =
 initialState :: State
 initialState =
   { list: entity
-      # addInstance "0" (list "Todo")
-      # addInstance "1" (list "Doing")
       # addInstance "2" (list "Done")
+      # addInstance "1" (list "Doing")
+      # addInstance "0" (list "Todo")
   , item: entity
   }
 
