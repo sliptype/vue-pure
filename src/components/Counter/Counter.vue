@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="counter">
     <h1>Counter: {{ props.value }}</h1>
     <button @click="actions.increment(1)">Increment</button>
     <button @click="actions.decrement(1)">Decrement</button>
@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style scoped>
+.counter {
+  margin-top: 5rem;
+}
+
 button {
   background-color: aquamarine;
   color: black;
