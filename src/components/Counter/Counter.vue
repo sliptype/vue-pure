@@ -12,3 +12,20 @@ export default {
   props: ['actions', 'props'],
 }
 </script>
+
+<style scoped>
+button {
+  background-color: aquamarine;
+  color: black;
+  padding: 1rem;
+  text-transform: uppercase;
+  border: none;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkcyan;
+  color: white;
+}
+</style>
